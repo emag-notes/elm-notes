@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Port Example</title>
+</head>
+<body>
+
+<div id="root"></div>
+<script src="elm.js"></script>
+<script>
+  const app = Elm.Main.init({
+    node: document.getElementById("root"),
+    flags: undefined
+  });
+
+  app.ports.confirm.subscribe(message => {
+    const answer = confirm(message);
+    app.ports.receiveAnswer.send(answer);
+  });
+</script>
+</body>
+</html>
